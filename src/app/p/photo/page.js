@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
 export default function Photo() {
     const [photos, setPhotos] = useState([]);
@@ -74,7 +76,12 @@ export default function Photo() {
                                     )}
                                     <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30 hover:opacity-0 transition-opacity duration-300"></div>
                                     <div className="absolute bottom-0 left-0 w-full p-4 text-white">
-                                        <h3 className="text-lg font-semibold">{photo.nama || "Untitled"}</h3>
+                                        <div className="flex justify-between items-center">
+                                            <h3 className="text-lg font-semibold">{photo.nama || "Untitled"}</h3>
+                                            <p className="text-gray-100 font-semibold text-sm">
+                                                {format(new Date(photo.created_at), 'd MMMM yyyy', { locale: id })}
+                                            </p>
+                                        </div>
                                         <p className="text-sm">{photo.deskripsi || "No description"}</p>
                                     </div>
                                 </Link>

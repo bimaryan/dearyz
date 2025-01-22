@@ -3,6 +3,9 @@
 import NavbarAdmin from "@/app/components/NavbarAdmin";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import imageCompression from "browser-image-compression";
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
 export default function PhotoAdmin() {
     const [loading, setLoading] = useState(true);
@@ -90,12 +93,19 @@ export default function PhotoAdmin() {
     const handleAddPhoto = async (e) => {
         e.preventDefault();
         const token = localStorage.getItem("auth_token");
-        const formData = new FormData();
-        formData.append("nama", newPhoto.nama);
-        formData.append("deskripsi", newPhoto.deskripsi);
-        formData.append("image", newPhoto.image);
 
         try {
+            const compressedImage = await imageCompression(newPhoto.image, {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 800,
+                useWebWorker: true,
+            });
+
+            const formData = new FormData();
+            formData.append("nama", newPhoto.nama);
+            formData.append("deskripsi", newPhoto.deskripsi);
+            formData.append("image", compressedImage);
+
             const response = await fetch("https://bimaryan.serv00.net/api/photo", {
                 method: "POST",
                 headers: {
@@ -115,6 +125,7 @@ export default function PhotoAdmin() {
             }
         } catch (error) {
             Swal.fire("Error!", "An error occurred while adding the photo.", "error");
+            console.error("Error compressing image:", error);
         }
     };
 
@@ -285,7 +296,12 @@ export default function PhotoAdmin() {
                                         alt={photo.nama}
                                         className="w-full h-64 object-cover rounded-lg mb-2"
                                     />
-                                    <h4 className="font-semibold text-lg text-pink-500">{photo.nama}</h4>
+                                    <div className="flex justify-between items-center">
+                                        <h4 className="font-semibold text-lg text-pink-500">{photo.nama}</h4>
+                                        <p className="text-gray-500 text-sm">
+                                            {format(new Date(photo.created_at), 'd MMMM yyyy', { locale: id })}
+                                        </p>
+                                    </div>
                                     <p className="text-sm text-gray-600">{photo.deskripsi}</p>
                                     <div className="flex justify-between items-center mt-4">
                                         <button
