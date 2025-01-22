@@ -63,7 +63,7 @@ export default function Detail() {
     }
 
     return (
-        <div className="min-h-screen bg-pink-100 flex flex-col items-center">
+        <div className="max-h-screen bg-pink-100 flex flex-col items-center">
             {/* Navbar */}
             <Navbar />
 
