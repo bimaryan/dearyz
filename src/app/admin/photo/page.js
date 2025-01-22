@@ -133,7 +133,7 @@ export default function PhotoAdmin() {
         }
 
         try {
-            const response = await fetch(`https://bimaryan.serv00.net/api/photo/${editPhoto.id}`, {
+            const response = await fetch(`https://bimaryan.serv00.net/api/photo/${editPhoto.photo}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
