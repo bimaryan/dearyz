@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 export default function Detail() {
     const [photo, setPhoto] = useState(null);
@@ -68,6 +69,12 @@ export default function Detail() {
 
             <main className="w-full flex-grow">
                 <div className="max-w-screen-lg mx-auto p-4 pt-20">
+                    <Link href="/p/photo" className="bg-pink-500 hover:bg-pink-700 px-3 py-2 rounded-lg">
+                        <i className="fa-solid fa-arrow-left"></i> <span className="ml-1">Back</span>
+                    </Link>
+                    <br/>
+                    <br/>
+
                     {/* Container for layout */}
                     <div className="grid grid-cols-1 md:grid-cols-2 bg-white shadow-md rounded-lg overflow-hidden">
                         {/* Image Section */}
