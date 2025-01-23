@@ -299,7 +299,7 @@ export default function PhotoAdmin() {
                                     <div className="flex justify-between items-center">
                                         <h4 className="font-semibold text-lg text-pink-500">{photo.nama}</h4>
                                         <p className="text-gray-500 text-sm">
-                                            {format(new Date(photo.created_at), 'd MMMM yyyy', { locale: id })}
+                                            {photo.created_at}
                                         </p>
                                     </div>
                                     <p className="text-sm text-gray-600">{photo.deskripsi}</p>
