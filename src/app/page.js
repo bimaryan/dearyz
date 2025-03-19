@@ -9,7 +9,7 @@ export default function Home() {
       <Navbar />
 
       {/* Main Content */}
-      <main className="w-full flex-grow pt-20">
+      <main className="w-full flex-grow mt-14">
         <ContentsHome />
       </main>
 
