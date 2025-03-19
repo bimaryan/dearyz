@@ -14,6 +14,10 @@ export default function Photo() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const previousPage =
+    urlParams.get("page") || localStorage.getItem("lastPhotoPage") || 1;
+
   useEffect(() => {
     const fetchPhotos = async () => {
       setLoading(true);
@@ -73,7 +77,7 @@ export default function Photo() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {photos.map((photo) => (
                 <Link
-                  href={`/p/photo/detail?nama=${photo.nama}`}
+                  href={`/p/photo/detail?nama=${photo.nama}&page=${currentPage}`}
                   key={photo.id}
                   className="relative overflow-hidden rounded-lg shadow-lg bg-white"
                 >

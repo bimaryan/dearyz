@@ -82,10 +82,9 @@ export default function Detail() {
             <span className="ml-1">Back</span>
           </Link>
           <br />
-          <br />
 
           {/* Container for layout */}
-          <div className="flex md:flex-row flex-col justify-between bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="flex mt-4 md:flex-row flex-col justify-between bg-white shadow-md rounded-lg overflow-hidden">
             {/* Image Section */}
             <div className="bg-black flex justify-center items-center relative">
               {!isImageLoaded && (
