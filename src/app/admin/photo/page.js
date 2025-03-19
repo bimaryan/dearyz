@@ -288,7 +288,7 @@ export default function PhotoAdmin() {
                             </div>
                         )}
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                             {photos.map((photo) => (
                                 <div key={photo.id} className="bg-white p-4 rounded-lg shadow-lg">
                                     <img
@@ -296,10 +296,10 @@ export default function PhotoAdmin() {
                                         alt={photo.nama}
                                         className="w-full h-64 object-cover rounded-lg mb-2"
                                     />
-                                    <div className="flex justify-between items-center">
-                                        <h4 className="font-semibold text-lg text-pink-500">{photo.nama}</h4>
+                                    <div className="flex justify-between gap-2 items-center">
+                                        <h4 className="font-medium text-m text-pink-500">{photo.nama}</h4>
                                         <p className="text-gray-500 text-sm">
-                                            {photo.created_at}
+                                            {format(new Date(photo.created_at), 'd MMMM yyyy', { locale: id })}
                                         </p>
                                     </div>
                                     <p className="text-sm text-gray-600">{photo.deskripsi}</p>
